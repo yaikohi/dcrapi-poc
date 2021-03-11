@@ -1,4 +1,4 @@
-import { FC, CSSProperties, useState, useEffect } from 'react';
+import { CSSProperties, useState, useEffect } from 'react';
 import { Card } from 'antd';
 
 const gridStyle: CSSProperties = {
@@ -34,8 +34,6 @@ function CompanyGrid() {
       )
   }, [])
 
-  console.log(items)
-
   if (error) {
       return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
@@ -54,6 +52,5 @@ function CompanyGrid() {
     );
   }
 }
-  
 
 export { CompanyGrid };
