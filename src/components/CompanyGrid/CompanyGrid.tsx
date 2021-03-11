@@ -42,8 +42,8 @@ function CompanyGrid() {
       return (
       <Card title="Bedrijven">
         {items.map((company: any) => 
-          <a href={company.website}>
-            <Card.Grid style={gridStyle} key={company.id}>
+          <a href={company.website} key={company.id}>
+            <Card.Grid style={gridStyle}>
               <img src={`${baseUrl}${company.logo}`} style={imgStyle} alt={`${company.name} logo`}></img>
             </Card.Grid>
           </a>
