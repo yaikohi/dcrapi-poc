@@ -12,7 +12,7 @@ const imgStyle: CSSProperties = {
   objectFit: "contain"
 };
 
-const baseUrl: string = "https://dashboard-pio.herokuapp.com";
+const baseUrl: string = process.env.REACT_APP_API_URL;
 
 function CompanyGrid() {
   const [error, setError] = useState(null);
