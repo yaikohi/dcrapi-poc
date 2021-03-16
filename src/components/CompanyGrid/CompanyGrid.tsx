@@ -1,5 +1,5 @@
 import { CSSProperties, useState, useEffect } from 'react';
-import { Card, Modal, Row, Col } from 'antd';
+import { Card } from 'antd';
 import { CompanyInfoModal } from '../Modals/companyInfoModal';
 
 const gridStyle: CSSProperties = {
@@ -30,9 +30,8 @@ export function CompanyGrid() {
 
   function FetchCompanyId(props) {
 
-    setCompanySelected(props);
-    console.log(props);
-    setVisible(true); //set company id
+    setCompanySelected(props);//set company id
+    setVisible(true);
   }
 
   useEffect(() => {
@@ -57,12 +56,12 @@ export function CompanyGrid() {
   } else {
     return (
       <>
-        <CompanyInfoModal company={companyInfo} modalState={visible} />
+        <CompanyInfoModal company={companyInfo} modalState={visible} onModalStateChange={(val) =>setVisible(val)} />
         <Card title="Bedrijven">
           {items.map((company: any) =>
-            <a onClick={() => {
-              FetchCompanyId(company.id); // onclick for the delete button
-            }} key={company.id}>
+            <a  
+              onClick={() => {FetchCompanyId(company.id);}} 
+              key={company.id} >
               <Card.Grid style={gridStyle}>
                 <img src={`${baseUrl}${company.logo}`} style={imgStyle} alt={`${company.name} logo`}></img>
               </Card.Grid>
