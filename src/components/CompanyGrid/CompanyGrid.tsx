@@ -50,7 +50,7 @@ export function CompanyGrid() {
   } else {
     return (
       <>
-        <CompanyInfoModal company={companyInfo} />
+        <CompanyInfoModal company={companyInfo}/>
         <Card title="Bedrijven">
           {items.map((company: any) =>
             <a onClick={() => setVisible(true)} key={company.id}>
