@@ -13,20 +13,27 @@ const imgStyle: CSSProperties = {
   objectFit: "contain"
 };
 
-const companyInfo =
-{
-  id: 2,
-  name: "Testing",
-}
-
-
 const baseUrl: string = process.env.REACT_APP_API_URL;
 
 export function CompanyGrid() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
+  const [companySelected, setCompanySelected] = useState(null);
   const [visible, setVisible] = useState(false);
+
+  const companyInfo =
+  {
+    id: companySelected,
+    name: "Testing",
+  }
+
+  function FetchCompanyId(props) {
+
+    setCompanySelected(props);
+    console.log(props);
+    setVisible(true); //set company id
+  }
 
   useEffect(() => {
     fetch(`${baseUrl}/companies`)
@@ -50,10 +57,12 @@ export function CompanyGrid() {
   } else {
     return (
       <>
-        <CompanyInfoModal company={companyInfo}/>
+        <CompanyInfoModal company={companyInfo} modalState={visible} />
         <Card title="Bedrijven">
           {items.map((company: any) =>
-            <a onClick={() => setVisible(true)} key={company.id}>
+            <a onClick={() => {
+              FetchCompanyId(company.id); // onclick for the delete button
+            }} key={company.id}>
               <Card.Grid style={gridStyle}>
                 <img src={`${baseUrl}${company.logo}`} style={imgStyle} alt={`${company.name} logo`}></img>
               </Card.Grid>
