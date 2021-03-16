@@ -1,5 +1,5 @@
 import { CSSProperties, useState, useEffect } from 'react';
-import { Card, Modal, Button } from 'antd';
+import { Card, Modal, Row, Col } from 'antd';
 import { CompanyInfoModal } from '../Modals/companyInfoModal';
 
 const gridStyle: CSSProperties = {
@@ -13,9 +13,16 @@ const imgStyle: CSSProperties = {
   objectFit: "contain"
 };
 
+const companyInfo =
+{
+  id: 2,
+  name: "Testing",
+}
+
+
 const baseUrl: string = process.env.REACT_APP_API_URL;
 
-function CompanyGrid() {
+export function CompanyGrid() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
@@ -43,19 +50,7 @@ function CompanyGrid() {
   } else {
     return (
       <>
-        <Modal
-          title="Modal 1000px width"
-          centered
-          visible={visible}
-          onOk={() => setVisible(false)}
-          onCancel={() => setVisible(false)}
-          width={1000}
-        >
-          <p>some contents...</p>
-          <p>some contents...</p>
-          <p>some contents...</p>
-        </Modal>
-
+        <CompanyInfoModal company={companyInfo} />
         <Card title="Bedrijven">
           {items.map((company: any) =>
             <a onClick={() => setVisible(true)} key={company.id}>
@@ -69,5 +64,3 @@ function CompanyGrid() {
     );
   }
 }
-
-export { CompanyGrid };
