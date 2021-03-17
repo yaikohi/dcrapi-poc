@@ -25,13 +25,12 @@ export function CompanyGrid() {
   const companyInfo =
   {
     id: companySelected,
-    name: "Testing",
   }
 
   function FetchCompanyId(props) {
 
     setCompanySelected(props);//set company id
-    setVisible(true);
+    setVisible(true); // view modal
   }
 
   useEffect(() => {

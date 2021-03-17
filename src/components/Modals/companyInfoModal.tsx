@@ -23,7 +23,7 @@ export const CompanyInfoModal: React.FC<CompanyProps> = ({ company, modalState, 
       >
         <Row>
           <Col span={12}>{company.id}</Col>
-          <Col span={12}>{company.name}</Col>
+          <Col span={12}>{company.id}</Col>
         </Row>
       </Modal>
     </>
