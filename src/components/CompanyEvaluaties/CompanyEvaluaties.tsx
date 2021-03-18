@@ -1,3 +1,6 @@
+import { Typography } from 'antd';
+const { Paragraph } = Typography;
+
 interface CompanyEvaluationsProps {
   evaluationTitle: string;
 }
@@ -5,9 +8,9 @@ interface CompanyEvaluationsProps {
 export const CompanyEvaluaties: React.FC<CompanyEvaluationsProps> = ({ evaluationTitle }: CompanyEvaluationsProps) => {
   return (
     <>
-      <p>
+      <Paragraph>
         Coming Soon
-      </p>
+      </Paragraph>
     </>
   );
 }

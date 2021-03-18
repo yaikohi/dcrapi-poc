@@ -1,3 +1,6 @@
+import { Typography } from 'antd';
+const { Paragraph, Title } = Typography;
+
 interface CompanyDetailsProps {
   companyName: string;
   companyTagline: string;
@@ -6,8 +9,8 @@ interface CompanyDetailsProps {
 export const CompanyDetails: React.FC<CompanyDetailsProps> = ({ companyName, companyTagline }: CompanyDetailsProps) => {
   return (
     <>
-      <h1>Company Name</h1>
-      <p>CompanyTagline</p>
+      <Title>Company Name</Title>
+      <Paragraph>CompanyTagline</Paragraph>
     </>
   );
 }
