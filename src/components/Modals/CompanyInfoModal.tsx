@@ -16,8 +16,12 @@ interface CompanyProps {
 const colStyles: CSSProperties = {
   backgroundColor: "white",
   padding: "15px",
-  marginBottom: '20px',
 };
+
+const expandToFitStyle: CSSProperties = {
+  width: "100%",
+  height: "100%"
+}
 
 export const CompanyInfoModal: React.FC<CompanyProps> = ({ company, modalState, onModalStateChange }: CompanyProps) => {
   return (
@@ -30,11 +34,13 @@ export const CompanyInfoModal: React.FC<CompanyProps> = ({ company, modalState, 
       keyboard={true}
       footer={false}
     >
-      <Row>
-        <Col span={8} style={colStyles}>
-          <CompanyLogo logoName={"/companyLogos/Fynch.png"} />
+      <Row wrap={true}>
+        <Col flex={1} style={colStyles}>
+          <Row justify="center" align="middle" style={expandToFitStyle}>
+            <CompanyLogo logoName={"/companyLogos/Fynch.png"} />
+          </Row>
         </Col>
-        <Col span={12} style={colStyles}>
+        <Col flex={10} style={colStyles}>
           <CompanyDetails companyName={"companyName"} companyTagline={"companyTagline"} />
         </Col>
       </Row>
