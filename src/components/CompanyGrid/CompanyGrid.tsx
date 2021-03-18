@@ -1,6 +1,6 @@
 import { CSSProperties, useState, useEffect } from 'react';
 import { Card } from 'antd';
-import { CompanyInfoModal } from '../Modals/companyInfoModal';
+import { CompanyInfoModal } from '../Modals/CompanyInfoModal';
 
 const gridStyle: CSSProperties = {
   width: '25%',
@@ -22,14 +22,12 @@ export function CompanyGrid() {
   const [companySelected, setCompanySelected] = useState(null);
   const [visible, setVisible] = useState(false);
 
-  const companyInfo =
-  {
-    id: companySelected,
+  const companyInfo = {
+    id: companySelected
   }
 
-  function FetchCompanyId(props) {
-
-    setCompanySelected(props);//set company id
+  function fetchCompanyId(props) {
+    setCompanySelected(props); //set company id
     setVisible(true); // view modal
   }
 
@@ -55,12 +53,13 @@ export function CompanyGrid() {
   } else {
     return (
       <>
-        <CompanyInfoModal company={companyInfo} modalState={visible} onModalStateChange={(val) =>setVisible(val)} />
+        <CompanyInfoModal company={companyInfo} modalState={visible} onModalStateChange={(val) => setVisible(val)} />
         <Card title="Bedrijven">
           {items.map((company: any) =>
-            <a  
-              onClick={() => {FetchCompanyId(company.id);}} 
-              key={company.id} >
+            <a
+              onClick={() => fetchCompanyId(company.id)}
+              key={company.id}
+            >
               <Card.Grid style={gridStyle}>
                 <img src={`${baseUrl}${company.logo}`} style={imgStyle} alt={`${company.name} logo`}></img>
               </Card.Grid>
