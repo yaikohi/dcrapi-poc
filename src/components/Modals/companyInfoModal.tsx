@@ -32,6 +32,7 @@ export const CompanyInfoModal: React.FC<CompanyProps> = ({ company, modalState, 
         onCancel={() => onModalStateChange(false)}
         width={1000}
         keyboard={true}
+        footer={false}
       >
         <Row>
           <Col span={8} style={colStyles}>
