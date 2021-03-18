@@ -6,11 +6,5 @@ interface CompanyEvaluationsProps {
 }
 
 export const CompanyEvaluaties: React.FC<CompanyEvaluationsProps> = ({ evaluationTitle }: CompanyEvaluationsProps) => {
-  return (
-    <>
-      <Paragraph>
-        Coming Soon
-      </Paragraph>
-    </>
-  );
+  return <Paragraph>Coming Soon</Paragraph>;
 }

@@ -12,9 +12,5 @@ const imgStyle: CSSProperties = {
 const baseUrl: string = process.env.REACT_APP_API_URL;
 
 export const CompanyLogo: React.FC<CompanyLogoProps> = ({ logoName }: CompanyLogoProps) => {
-  return (
-    <>
-      <img src={`${baseUrl}${logoName}`} style={imgStyle} alt={`logo`}></img>
-    </>
-  );
+  return <img src={`${baseUrl}${logoName}`} style={imgStyle} alt={`logo`}></img>;
 }
