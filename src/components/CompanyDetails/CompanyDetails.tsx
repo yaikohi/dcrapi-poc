@@ -9,8 +9,8 @@ interface CompanyDetailsProps {
 export const CompanyDetails: React.FC<CompanyDetailsProps> = ({ companyName, companyTagline }: CompanyDetailsProps) => {
   return (
     <>
-      <Title>Company Name</Title>
-      <Paragraph>CompanyTagline</Paragraph>
+      <Title>{companyName}</Title>
+      <Paragraph>{companyTagline}</Paragraph>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react';
-import { Modal, Row, Col, } from 'antd';
-import Company from '../../interfaces';
+import { Modal, Row, Col } from 'antd';
+import { Company } from '../../interfaces'
 import { CompanyLogo } from '../CompanyLogo/CompanyLogo';
 import { CompanyEvaluaties } from '../CompanyEvaluaties/CompanyEvaluaties';
 import { CompanyDescr } from '../CompanyDescr/CompanyDescr';
@@ -8,7 +8,7 @@ import { CompanyContactInfo } from '../CompanyContactInfo/CompanyContactInfo';
 import { CompanyDetails } from '../CompanyDetails/CompanyDetails';
 
 interface CompanyProps {
-  company: Company;
+  companySelected: Company;
   modalState: boolean;
   onModalStateChange: (val: boolean) => void;
 }
@@ -23,7 +23,7 @@ const expandToFitStyle: CSSProperties = {
   height: "100%"
 }
 
-export const CompanyInfoModal: React.FC<CompanyProps> = ({ company, modalState, onModalStateChange }: CompanyProps) => {
+export const CompanyInfoModal: React.FC<CompanyProps> = ({ companySelected, modalState, onModalStateChange }: CompanyProps) => {
   return (
     <Modal
       centered
@@ -35,26 +35,26 @@ export const CompanyInfoModal: React.FC<CompanyProps> = ({ company, modalState, 
       footer={false}
     >
       <Row wrap={true}>
-        <Col flex={1} style={colStyles}>
+        <Col span={8} style={colStyles}>
           <Row justify="center" align="middle" style={expandToFitStyle}>
-            <CompanyLogo logoName={"/companyLogos/Fynch.png"} />
+            <CompanyLogo logoName={companySelected.logo} />
           </Row>
         </Col>
-        <Col flex={10} style={colStyles}>
-          <CompanyDetails companyName={"companyName"} companyTagline={"companyTagline"} />
+        <Col span={14} style={colStyles}>
+          <CompanyDetails companyName={companySelected.name} companyTagline={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."} />
         </Col>
       </Row>
       <Row>
         <Col span={24} style={colStyles}>
-          <CompanyDescr companyDescr={"descr"} />
+          <CompanyDescr companyDescr={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."} />
         </Col>
       </Row>
       <Row>
         <Col span={12} style={colStyles}>
-          <CompanyEvaluaties evaluationTitle={"Title"} />
+          <CompanyEvaluaties />
         </Col>
         <Col span={12} style={colStyles}>
-          <CompanyContactInfo contactInfo={"contact"} />
+          <CompanyContactInfo website={companySelected.website} contacts={companySelected.contacts} />
         </Col>
       </Row>
     </Modal>

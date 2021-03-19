@@ -1,10 +1,6 @@
 import { Typography } from 'antd';
-const { Paragraph } = Typography;
+const { Title } = Typography;
 
-interface CompanyEvaluationsProps {
-  evaluationTitle: string;
-}
-
-export const CompanyEvaluaties: React.FC<CompanyEvaluationsProps> = ({ evaluationTitle }: CompanyEvaluationsProps) => {
-  return <Paragraph>Coming Soon</Paragraph>;
+export const CompanyEvaluaties: React.FC = () => {
+  return <Title level={3}>Evaluaties</Title>;
 }

@@ -1,35 +1,32 @@
 import { List, Avatar } from 'antd';
+import { Contact } from '../../interfaces'
 
 interface CompanyContactInfoProps {
-  contactInfo: string;
+  website: string,
+  contacts: Array<Contact>
 }
 
-const data = [
-  {
-    title: 'Email',
-  },
-  {
-    title: 'Blabla',
-  },
-  {
-    title: 'Blahhblahblah',
-  },
-];
-
-export const CompanyContactInfo: React.FC<CompanyContactInfoProps> = ({ contactInfo }: CompanyContactInfoProps) => {
+export const CompanyContactInfo: React.FC<CompanyContactInfoProps> = ({ website, contacts }: CompanyContactInfoProps) => {
   return (
-    <List
-      itemLayout="horizontal"
-      dataSource={data}
-      renderItem={item => (
-        <List.Item>
-          <List.Item.Meta
-            avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>}
-            title={<a href="https://ant.design">{item.title}</a>}
-            description="Contact information should be here."
+    <>
+      <List.Item>
+        <List.Item.Meta
+          title={<a href={website}>{website}</a>}
+        />
+      </List.Item>
+      <List
+        itemLayout="horizontal"
+        dataSource={contacts}
+        renderItem={contact => (
+          <List.Item>
+            <List.Item.Meta
+              avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>}
+              title={contact.name}
+              description={contact.email}
           />
         </List.Item>
-      )}
-    />
+        )}
+      />
+    </>
   );
 }

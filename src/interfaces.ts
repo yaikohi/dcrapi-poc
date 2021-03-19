@@ -1,4 +1,14 @@
-interface Company{
-    id: number,
+interface Contact {
+    name: string,
+    email: string
 }
-export default Company;
+
+interface Company {
+    id: number,
+    name: string,
+    website: string,
+    logo: string,
+    contacts: Array<Contact>
+}
+
+export type { Company, Contact };
