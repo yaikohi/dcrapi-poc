@@ -1,9 +1,9 @@
 import { CSSProperties, useState, useEffect } from 'react';
-import { Card } from 'antd';
+import { Card, Row, Col } from 'antd';
 import { CompanyInfoModal } from '../Modals/CompanyInfoModal';
 
 const gridStyle: CSSProperties = {
-  width: '25%',
+  width: '100%',
   textAlign: 'center',
 };
 
@@ -49,38 +49,46 @@ export function CompanyGrid() {
   } else if (!companySelected) {
     return (
       <Card title="Bedrijven">
-        {items.map((company: any) =>
-          <a
-            onClick={() => fetchOnCompanyId(company.id)}
-            key={company.id}
-          >
-            <Card.Grid style={gridStyle}>
-              <img src={`${baseUrl}${company.logo}`} style={imgStyle} alt={`${company.name} logo`}></img>
-            </Card.Grid>
-          </a>
-        )}
+        <Row>
+          {items.map((company: any) =>
+            <Col md={6}>
+              <a
+                onClick={() => fetchOnCompanyId(company.id)}
+                key={company.id}
+              >
+                <Card.Grid style={gridStyle}>
+                  <img src={`${baseUrl}${company.logo}`} style={imgStyle} alt={`${company.name} logo`}></img>
+                </Card.Grid>
+              </a>
+            </Col>
+          )}
+        </Row>
       </Card>
     );
   } else {
     return (
       <>
-        <CompanyInfoModal 
-          companySelected={companySelected} 
-          modalState={visible} 
-          onModalStateChange={(val) => setVisible(val)} 
+        <CompanyInfoModal
+          companySelected={companySelected}
+          modalState={visible}
+          onModalStateChange={(val) => setVisible(val)}
         />
         <Card title="Bedrijven">
-          {items.map((company: any) =>
-            <a
-              onClick={() => fetchOnCompanyId(company.id)}
-              key={company.id}
-            >
-              <Card.Grid style={gridStyle}>
-                <img src={`${baseUrl}${company.logo}`} style={imgStyle} alt={`${company.name} logo`}></img>
-              </Card.Grid>
-            </a>
-          )}
-      </Card>
+          <Row>
+            {items.map((company: any) =>
+              <Col md={6}>
+                <a
+                  onClick={() => fetchOnCompanyId(company.id)}
+                  key={company.id}
+                >
+                  <Card.Grid style={gridStyle}>
+                    <img src={`${baseUrl}${company.logo}`} style={imgStyle} alt={`${company.name} logo`}></img>
+                  </Card.Grid>
+                </a>
+              </Col>
+            )}
+          </Row>
+        </Card>
       </>
     );
   }
