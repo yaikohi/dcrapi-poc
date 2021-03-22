@@ -7,8 +7,12 @@ const gridStyle: CSSProperties = {
   textAlign: 'center',
 };
 
+const colStyle: CSSProperties = {
+  width: "100%",
+};
+
 const imgStyle: CSSProperties = {
-  maxWidth: "100%",
+  width: "100%",
   height: "150px",
   objectFit: "contain"
 };
@@ -51,7 +55,7 @@ export function CompanyGrid() {
       <Card title="Bedrijven">
         <Row>
           {items.map((company: any) =>
-            <Col md={6}>
+            <Col md={6} style={colStyle}>
               <a
                 onClick={() => fetchOnCompanyId(company.id)}
                 key={company.id}
@@ -76,7 +80,7 @@ export function CompanyGrid() {
         <Card title="Bedrijven">
           <Row>
             {items.map((company: any) =>
-              <Col md={6}>
+              <Col xs={24} sm={12} md={6}>
                 <a
                   onClick={() => fetchOnCompanyId(company.id)}
                   key={company.id}
