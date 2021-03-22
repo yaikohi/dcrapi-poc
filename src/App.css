@@ -1,1 +1,15 @@
 @import '~antd/dist/antd.css';
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
+
+.search-bar {
+  max-width: 500px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
