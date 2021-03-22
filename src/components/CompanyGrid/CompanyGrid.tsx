@@ -1,6 +1,10 @@
-import { CSSProperties, useState, useEffect } from 'react';
+import { CSSProperties, useState, useEffect, FC } from 'react';
 import { Card, Row, Col } from 'antd';
 import { CompanyInfoModal } from '../Modals/CompanyInfoModal';
+
+interface CompanyGridProps {
+  searchInput: string
+}
 
 const gridStyle: CSSProperties = {
   width: '100%',
@@ -19,7 +23,7 @@ const imgStyle: CSSProperties = {
 
 const baseUrl: string = process.env.REACT_APP_API_URL;
 
-export function CompanyGrid() {
+export const CompanyGrid: FC<CompanyGridProps> = (props) => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);

@@ -22,7 +22,7 @@ function App() {
           <Search onChange={onSearchBarChange} className="search-bar" placeholder="Bedrijfsnaam" enterButton />
         </Header>
         <Content style={{ margin: `${gapSize}px` }}>
-          <CompanyGrid />
+          <CompanyGrid searchInput={searchInput}/>
         </Content>
     </Layout>
       
