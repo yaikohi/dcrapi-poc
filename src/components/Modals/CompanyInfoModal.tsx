@@ -8,12 +8,12 @@ import { CompanyDetails } from '../CompanyDetails/CompanyDetails';
 import './CompanyInfoModal.css';
 
 interface CompanyProps {
-  companySelected: Company;
+  selectedCompany: Company;
   modalState: boolean;
   onModalStateChange: (val: boolean) => void;
 }
 
-export const CompanyInfoModal: React.FC<CompanyProps> = ({ companySelected, modalState, onModalStateChange }: CompanyProps) => {
+export const CompanyInfoModal: React.FC<CompanyProps> = ({ selectedCompany, modalState, onModalStateChange }: CompanyProps) => {
   return (
     <Modal
       centered
@@ -27,11 +27,11 @@ export const CompanyInfoModal: React.FC<CompanyProps> = ({ companySelected, moda
       <Row wrap={true}>
         <Col span={8} className="modal-column">
           <Row justify="center" align="middle" className="modal-row">
-            <CompanyLogo logoName={companySelected.logo} />
+            <CompanyLogo logoName={selectedCompany.logo} />
           </Row>
         </Col>
         <Col span={14} className="modal-column">
-          <CompanyDetails companyName={companySelected.name} companyTagline={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."} />
+          <CompanyDetails companyName={selectedCompany.name} companyTagline={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."} />
         </Col>
       </Row>
       <Row>
@@ -44,7 +44,7 @@ export const CompanyInfoModal: React.FC<CompanyProps> = ({ companySelected, moda
           <CompanyEvaluaties />
         </Col>
         <Col span={12} className="modal-column">
-          <CompanyContactInfo website={companySelected.website} contacts={companySelected.contacts} />
+          <CompanyContactInfo website={selectedCompany.website} contacts={selectedCompany.contacts} />
         </Col>
       </Row>
     </Modal>

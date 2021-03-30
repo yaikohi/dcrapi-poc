@@ -14,12 +14,12 @@ interface CompanyGridProps {
 const baseUrl: string = process.env.REACT_APP_API_URL;
 
 export const CompanyGrid: FC<CompanyGridProps> = (props) => {
-  const [companySelected, setCompanySelected] = useState(null);
-  const [visible, setVisible] = useState(false);
+  const [selectedCompany, setSelectedCompany] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
 
-  function fetchOnCompanyId(companyId) {
-    setCompanySelected(props.companies.find(company => company.id === companyId)); //set company id
-    setVisible(true); // view modal
+  function createModalOnCompanyId(companyId) {
+    setSelectedCompany(props.companies.find(company => company.id === companyId));
+    setModalVisible(true);
   }
 
   const searchInput = props.searchInput.toLowerCase()
@@ -36,14 +36,14 @@ export const CompanyGrid: FC<CompanyGridProps> = (props) => {
     return <div>Error: {props.companiesFetchError.message}</div>;
   } else if (!props.companiesAreLoaded) {
     return <Card title="Bedrijven" loading={true}></Card>;
-  } else if (!companySelected) {
+  } else if (!selectedCompany) {
     return (
       <Card title="Bedrijven">
         <Row>
           {companies.map((company: any) =>
             <Col md={6} className="company-grid-column">
               <div
-                onClick={() => fetchOnCompanyId(company.id)}
+                onClick={() => createModalOnCompanyId(company.id)}
                 key={company.id}
               >
                 <Card.Grid className="company-grid">
@@ -63,16 +63,16 @@ export const CompanyGrid: FC<CompanyGridProps> = (props) => {
     return (
       <>
         <CompanyInfoModal
-          companySelected={companySelected}
-          modalState={visible}
-          onModalStateChange={(val) => setVisible(val)}
+          selectedCompany={selectedCompany}
+          modalState={modalVisible}
+          onModalStateChange={(val) => setModalVisible(val)}
         />
         <Card title="Bedrijven">
           <Row>
             {companies.map((company: Company) =>
               <Col xs={24} sm={12} md={6}>
                 <div
-                  onClick={() => fetchOnCompanyId(company.id)}
+                  onClick={() => createModalOnCompanyId(company.id)}
                   key={company.id}
                 >
                   <Card.Grid className="company-grid">
