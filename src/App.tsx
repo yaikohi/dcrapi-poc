@@ -32,7 +32,14 @@ function App() {
   }, [])
 
   const onSearchBarChange = (e) => {
-    setSearchInput(e.nativeEvent.srcElement.value)
+    const input = e.nativeEvent.srcElement.value
+    if (input === "") {
+      setSearchInput("")
+    }
+  }
+
+  const onSearchButtonClick = (input) => {
+    setSearchInput(input)
   }
 
   return (
@@ -40,6 +47,7 @@ function App() {
         <Header className="site-layout-background center" style={{ padding: `${gapSize}px` }}>
           <Search 
             onChange={onSearchBarChange} 
+            onSearch={onSearchButtonClick}
             className="search-bar" 
             placeholder="Bedrijfsnaam" 
             enterButton 

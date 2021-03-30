@@ -10,16 +10,17 @@ import './CompanyInfoModal.css';
 interface CompanyProps {
   selectedCompany: Company;
   modalState: boolean;
-  onModalStateChange: (val: boolean) => void;
+  changeModelState: (val: boolean) => void;
 }
 
-export const CompanyInfoModal: React.FC<CompanyProps> = ({ selectedCompany, modalState, onModalStateChange }: CompanyProps) => {
-  return (
+export const CompanyInfoModal: React.FC<CompanyProps> = ({ selectedCompany, modalState, changeModelState }: CompanyProps) => {
+  if (selectedCompany) {
+    return (
     <Modal
       centered
       visible={modalState}
-      onOk={() => onModalStateChange(false)}
-      onCancel={() => onModalStateChange(false)}
+      onOk={() => changeModelState(false)}
+      onCancel={() => changeModelState(false)}
       width={1000}
       keyboard={true}
       footer={false}
@@ -48,5 +49,17 @@ export const CompanyInfoModal: React.FC<CompanyProps> = ({ selectedCompany, moda
         </Col>
       </Row>
     </Modal>
-  );
+  )} else {
+    return (
+      <Modal
+      centered
+      visible={modalState}
+      onOk={() => changeModelState(false)}
+      onCancel={() => changeModelState(false)}
+      width={1000}
+      keyboard={true}
+      footer={false}
+    />
+    )
+  }
 }

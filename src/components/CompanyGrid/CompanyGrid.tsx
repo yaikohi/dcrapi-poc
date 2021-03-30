@@ -32,60 +32,37 @@ export const CompanyGrid: FC<CompanyGridProps> = (props) => {
     companies = props.companies
   }
 
+  const companyGridComponents = companies.map((company: Company) =>
+    <Col xs={24} sm={12} md={6}>
+      <div
+        onClick={() => createModalOnCompanyId(company.id)}
+        key={company.id}
+      >
+        <Card.Grid className="company-grid">
+          <img 
+            src={`${baseUrl}${company.logo}`} 
+            className="company-grid-logo" 
+            alt={`${company.name} logo`}
+          />
+        </Card.Grid>
+      </div>
+    </Col>
+  )
+
   if (props.companiesFetchError) {
     return <div>Error: {props.companiesFetchError.message}</div>;
   } else if (!props.companiesAreLoaded) {
     return <Card title="Bedrijven" loading={true}></Card>;
-  } else if (!selectedCompany) {
-    return (
-      <Card title="Bedrijven">
-        <Row>
-          {companies.map((company: any) =>
-            <Col md={6} className="company-grid-column">
-              <div
-                onClick={() => createModalOnCompanyId(company.id)}
-                key={company.id}
-              >
-                <Card.Grid className="company-grid">
-                  <img 
-                    src={`${baseUrl}${company.logo}`} 
-                    className="company-grid-logo"
-                    alt={`${company.name} logo`}
-                  />
-                </Card.Grid>
-              </div>
-            </Col>
-          )}
-        </Row>
-      </Card>
-    );
   } else {
     return (
       <>
         <CompanyInfoModal
           selectedCompany={selectedCompany}
           modalState={modalVisible}
-          onModalStateChange={(val) => setModalVisible(val)}
+          changeModelState={setModalVisible}
         />
         <Card title="Bedrijven">
-          <Row>
-            {companies.map((company: Company) =>
-              <Col xs={24} sm={12} md={6}>
-                <div
-                  onClick={() => createModalOnCompanyId(company.id)}
-                  key={company.id}
-                >
-                  <Card.Grid className="company-grid">
-                    <img 
-                      src={`${baseUrl}${company.logo}`} 
-                      className="company-grid-logo" 
-                      alt={`${company.name} logo`}
-                    />
-                  </Card.Grid>
-                </div>
-              </Col>
-            )}
-          </Row>
+          <Row>{companyGridComponents}</Row>
         </Card>
       </>
     );
