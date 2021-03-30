@@ -1,8 +1,12 @@
 import { CSSProperties, useState, useEffect, FC } from 'react';
 import { Card, Row, Col } from 'antd';
 import { CompanyInfoModal } from '../Modals/CompanyInfoModal';
+import { Company } from '../../interfaces';
 
 interface CompanyGridProps {
+  companies: Array<Company>
+  companiesAreLoaded: boolean
+  companiesFetchError: Error | null
   searchInput: string
 }
 
@@ -24,41 +28,33 @@ const imgStyle: CSSProperties = {
 const baseUrl: string = process.env.REACT_APP_API_URL;
 
 export const CompanyGrid: FC<CompanyGridProps> = (props) => {
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
   const [companySelected, setCompanySelected] = useState(null);
   const [visible, setVisible] = useState(false);
 
   function fetchOnCompanyId(companyId) {
-    setCompanySelected(items.find(item => item.id === companyId)); //set company id
+    setCompanySelected(props.companies.find(company => company.id === companyId)); //set company id
     setVisible(true); // view modal
   }
 
-  useEffect(() => {
-    fetch(`${baseUrl}/companies`)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setItems(result.response);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-  }, [])
+  const searchInput = props.searchInput.toLowerCase()
+  let companies: Array<Company> = [];
+  if (props.searchInput) {
+    companies = props.companies.filter(company => {
+      return company.name.toLowerCase().includes(searchInput)
+    })
+  } else {
+    companies = props.companies
+  }
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
+  if (props.companiesFetchError) {
+    return <div>Error: {props.companiesFetchError.message}</div>;
+  } else if (!props.companiesAreLoaded) {
     return <Card title="Bedrijven" loading={true}></Card>;
   } else if (!companySelected) {
     return (
       <Card title="Bedrijven">
         <Row>
-          {items.map((company: any) =>
+          {companies.map((company: any) =>
             <Col md={6} style={colStyle}>
               <a
                 onClick={() => fetchOnCompanyId(company.id)}
@@ -83,7 +79,7 @@ export const CompanyGrid: FC<CompanyGridProps> = (props) => {
         />
         <Card title="Bedrijven">
           <Row>
-            {items.map((company: any) =>
+            {companies.map((company: Company) =>
               <Col xs={24} sm={12} md={6}>
                 <a
                   onClick={() => fetchOnCompanyId(company.id)}
