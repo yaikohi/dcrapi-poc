@@ -1,5 +1,5 @@
 import { List, Avatar } from 'antd';
-import { Contact } from '../../interfaces'
+import { Contact } from '../../interfaces/Contact'
 
 interface CompanyContactInfoProps {
   website: string,

@@ -1,7 +1,7 @@
 import { CSSProperties, useState, FC } from 'react';
 import { Card, Row, Col } from 'antd';
 import { CompanyInfoModal } from '../Modals/CompanyInfoModal';
-import { Company } from '../../interfaces';
+import { Company } from '../../interfaces/Company'
 
 interface CompanyGridProps {
   companies: Array<Company>

@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react';
 import { Modal, Row, Col } from 'antd';
-import { Company } from '../../interfaces'
+import { Company } from '../../interfaces/Company'
 import { CompanyLogo } from '../CompanyLogo/CompanyLogo';
 import { CompanyEvaluaties } from '../CompanyEvaluaties/CompanyEvaluaties';
 import { CompanyDescr } from '../CompanyDescr/CompanyDescr';
