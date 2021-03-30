@@ -13,7 +13,7 @@ const baseUrl: string = process.env.REACT_APP_API_URL;
 function App() {
   const [searchInput, setSearchInput] = useState("");
   const [companiesFetchError, setCompaniesFetchError] = useState(null);
-  const [companiesAreLoaded, setcompaniesAreLoaded] = useState(false);
+  const [companiesFetched, setCompaniesFetched] = useState(false);
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
@@ -21,18 +21,25 @@ function App() {
       .then(res => res.json())
       .then(
         (result) => {
-          setcompaniesAreLoaded(true);
+          setCompaniesFetched(true);
           setCompanies(result.response);
         },
         (error) => {
-          setcompaniesAreLoaded(true);
+          setCompaniesFetched(true);
           setCompaniesFetchError(error);
         }
       )
   }, [])
 
   const onSearchBarChange = (e) => {
-    setSearchInput(e.nativeEvent.srcElement.value)
+    const input = e.nativeEvent.srcElement.value
+    if (input === "") {
+      setSearchInput("")
+    }
+  }
+
+  const onSearchButtonClick = (input) => {
+    setSearchInput(input)
   }
 
   return (
@@ -40,6 +47,7 @@ function App() {
         <Header className="site-layout-background center" style={{ padding: `${gapSize}px` }}>
           <Search 
             onChange={onSearchBarChange} 
+            onSearch={onSearchButtonClick}
             className="search-bar" 
             placeholder="Bedrijfsnaam" 
             enterButton 
@@ -50,7 +58,7 @@ function App() {
             <CompanyGrid 
               companies={companies} 
               searchInput={searchInput} 
-              companiesAreLoaded={companiesAreLoaded} 
+              companiesFetched={companiesFetched} 
               companiesFetchError={companiesFetchError}
             />
           </Content>
