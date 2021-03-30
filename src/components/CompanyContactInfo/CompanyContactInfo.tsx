@@ -22,9 +22,9 @@ export const CompanyContactInfo: React.FC<CompanyContactInfoProps> = ({ website,
             <List.Item.Meta
               avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>}
               title={contact.name}
-              description={contact.email}
-          />
-        </List.Item>
+              description={contact.email.toLowerCase()}
+            />
+          </List.Item>
         )}
       />
     </>
