@@ -1,11 +1,18 @@
 import { useState, FC } from 'react';
 import { Card, Row, Col } from 'antd';
-import { CompanyInfoModal } from '../Modals/CompanyInfoModal';
-import { Company } from '../../interfaces/Company';
+import { Company as CompanyType } from '../../interfaces/Company';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from "react-router-dom";
 import './CompanyGrid.css';
 
 interface CompanyGridProps {
-  companies: Array<Company>
+  companies: Array<CompanyType>
   companiesFetched: boolean
   companiesFetchError: Error | null
   searchInput: string
@@ -14,16 +21,8 @@ interface CompanyGridProps {
 const baseUrl: string = process.env.REACT_APP_API_URL;
 
 export const CompanyGrid: FC<CompanyGridProps> = (props) => {
-  const [selectedCompany, setSelectedCompany] = useState(null);
-  const [modalVisible, setModalVisible] = useState(false);
-
-  function createModalOnCompanyId(companyId) {
-    setSelectedCompany(props.companies.find(company => company.id === companyId));
-    setModalVisible(true);
-  }
-
   const searchInput = props.searchInput.toLowerCase()
-  let companies: Array<Company> = [];
+  let companies: Array<CompanyType> = [];
   if (props.searchInput) {
     companies = props.companies.filter(company => {
       return company.name.toLowerCase().includes(searchInput)
@@ -32,12 +31,9 @@ export const CompanyGrid: FC<CompanyGridProps> = (props) => {
     companies = props.companies
   }
 
-  const companyGridComponents = companies.map((company: Company) =>
+  const companyGridComponents = companies.map((company: CompanyType) =>
     <Col xs={24} sm={12} md={6}>
-      <div
-        onClick={() => createModalOnCompanyId(company.id)}
-        key={company.id}
-      >
+      <Link to={`/company/${company.id}`} key={company.id}>
         <Card.Grid className="company-grid">
           <img 
             src={`${baseUrl}${company.logo}`} 
@@ -45,7 +41,7 @@ export const CompanyGrid: FC<CompanyGridProps> = (props) => {
             alt={`${company.name} logo`}
           />
         </Card.Grid>
-      </div>
+      </Link>
     </Col>
   )
 
@@ -55,16 +51,9 @@ export const CompanyGrid: FC<CompanyGridProps> = (props) => {
     return <Card title="Bedrijven" loading={true}></Card>;
   } else {
     return (
-      <>
-        <CompanyInfoModal
-          selectedCompany={selectedCompany}
-          modalState={modalVisible}
-          changeModelState={setModalVisible}
-        />
-        <Card title="Bedrijven">
-          <Row>{companyGridComponents}</Row>
-        </Card>
-      </>
+      <Card title="Bedrijven">
+        <Row>{companyGridComponents}</Row>
+      </Card>
     );
   }
 }

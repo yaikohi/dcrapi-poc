@@ -1,11 +1,19 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import { CompanyGrid } from './components/CompanyGrid/CompanyGrid';
-import { Input } from 'antd';
+import { SiteHeader } from './components/SiteHeader/SiteHeader';
 import { Layout } from 'antd';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams, useHistory
+} from "react-router-dom";
+import { Company } from './components/Company/Company';
 
-const { Search } = Input;
-const { Header, Content  } = Layout;
+const { Content } = Layout;
 
 const gapSize = 16;
 const baseUrl: string = process.env.REACT_APP_API_URL;
@@ -31,40 +39,35 @@ function App() {
       )
   }, [])
 
-  const onSearchBarChange = (e) => {
-    const input = e.nativeEvent.srcElement.value
-    if (input === "") {
-      setSearchInput("")
-    }
-  }
-
-  const onSearchButtonClick = (input) => {
-    setSearchInput(input)
-  }
+  const companyRoutes = companies.map((company) => {
+    return (
+      <Route exact path={`/company/${company.id}`}>
+        <Company company={company} />
+      </Route>
+    )
+  }) 
 
   return (
     <Layout className="site-layout">
-        <Header className="site-layout-background center" style={{ padding: `${gapSize}px` }}>
-          <Search 
-            onChange={onSearchBarChange} 
-            onSearch={onSearchButtonClick}
-            className="search-bar" 
-            placeholder="Bedrijfsnaam" 
-            enterButton 
-          />
-        </Header>
+      <Router>
+        <SiteHeader setSearchInput={setSearchInput} />
         <Content className="center" style={{ margin: `${gapSize}px 0px 0px 0px`, padding: `0px ${gapSize}px 0px ${gapSize}px`, width: "100%" }}>
           <Content style={{ maxWidth: "1500px" }}>
-            <CompanyGrid 
-              companies={companies} 
-              searchInput={searchInput} 
-              companiesFetched={companiesFetched} 
-              companiesFetchError={companiesFetchError}
-            />
+            <Switch>
+              <Route exact path="/">
+                <CompanyGrid 
+                  companies={companies} 
+                  searchInput={searchInput} 
+                  companiesFetched={companiesFetched} 
+                  companiesFetchError={companiesFetchError}
+                />
+              </Route>
+              {companyRoutes}
+            </Switch>
           </Content>
         </Content>
-    </Layout>
-      
+      </Router>
+    </Layout>  
   )
 }
 
