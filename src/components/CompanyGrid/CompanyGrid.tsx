@@ -1,7 +1,8 @@
-import { CSSProperties, useState, FC } from 'react';
+import { useState, FC } from 'react';
 import { Card, Row, Col } from 'antd';
 import { CompanyInfoModal } from '../Modals/CompanyInfoModal';
-import { Company } from '../../interfaces/Company'
+import { Company } from '../../interfaces/Company';
+import './CompanyGrid.css';
 
 interface CompanyGridProps {
   companies: Array<Company>
@@ -9,21 +10,6 @@ interface CompanyGridProps {
   companiesFetchError: Error | null
   searchInput: string
 }
-
-const gridStyle: CSSProperties = {
-  width: '100%',
-  textAlign: 'center',
-};
-
-const colStyle: CSSProperties = {
-  width: "100%",
-};
-
-const imgStyle: CSSProperties = {
-  width: "100%",
-  height: "150px",
-  objectFit: "contain"
-};
 
 const baseUrl: string = process.env.REACT_APP_API_URL;
 
@@ -55,15 +41,15 @@ export const CompanyGrid: FC<CompanyGridProps> = (props) => {
       <Card title="Bedrijven">
         <Row>
           {companies.map((company: any) =>
-            <Col md={6} style={colStyle}>
+            <Col md={6} className="company-grid-column">
               <a
                 onClick={() => fetchOnCompanyId(company.id)}
                 key={company.id}
               >
-                <Card.Grid style={gridStyle}>
+                <Card.Grid className="company-grid">
                   <img 
                     src={`${baseUrl}${company.logo}`} 
-                    style={imgStyle} 
+                    className="company-grid-logo"
                     alt={`${company.name} logo`}
                   />
                 </Card.Grid>
@@ -89,10 +75,10 @@ export const CompanyGrid: FC<CompanyGridProps> = (props) => {
                   onClick={() => fetchOnCompanyId(company.id)}
                   key={company.id}
                 >
-                  <Card.Grid style={gridStyle}>
+                  <Card.Grid className="company-grid">
                     <img 
                       src={`${baseUrl}${company.logo}`} 
-                      style={imgStyle} 
+                      className="company-grid-logo" 
                       alt={`${company.name} logo`}
                     />
                   </Card.Grid>
