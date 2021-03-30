@@ -45,7 +45,7 @@ function App() {
             enterButton 
           />
         </Header>
-        <Content className="center" style={{ margin: `${gapSize}px 0px 0px 0px`, width: "100%" }}>
+        <Content className="center" style={{ margin: `${gapSize}px 0px 0px 0px`, padding: `0px ${gapSize}px 0px ${gapSize}px`, width: "100%" }}>
           <Content style={{ maxWidth: "1500px" }}>
             <CompanyGrid 
               companies={companies} 
