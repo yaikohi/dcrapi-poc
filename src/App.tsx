@@ -2,17 +2,9 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import { CompanyGrid } from './components/CompanyGrid/CompanyGrid';
 import { SiteHeader } from './components/SiteHeader/SiteHeader';
-import { Layout } from 'antd';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams, useHistory
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Company } from './components/Company/Company';
-
+import { Layout } from 'antd';
 const { Content } = Layout;
 
 const gapSize = 16;
