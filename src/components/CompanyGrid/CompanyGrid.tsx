@@ -42,7 +42,7 @@ export const CompanyGrid: FC<CompanyGridProps> = (props) => {
         <Row>
           {companies.map((company: any) =>
             <Col md={6} className="company-grid-column">
-              <a
+              <div
                 onClick={() => fetchOnCompanyId(company.id)}
                 key={company.id}
               >
@@ -53,7 +53,7 @@ export const CompanyGrid: FC<CompanyGridProps> = (props) => {
                     alt={`${company.name} logo`}
                   />
                 </Card.Grid>
-              </a>
+              </div>
             </Col>
           )}
         </Row>
@@ -71,7 +71,7 @@ export const CompanyGrid: FC<CompanyGridProps> = (props) => {
           <Row>
             {companies.map((company: Company) =>
               <Col xs={24} sm={12} md={6}>
-                <a
+                <div
                   onClick={() => fetchOnCompanyId(company.id)}
                   key={company.id}
                 >
@@ -82,7 +82,7 @@ export const CompanyGrid: FC<CompanyGridProps> = (props) => {
                       alt={`${company.name} logo`}
                     />
                   </Card.Grid>
-                </a>
+                </div>
               </Col>
             )}
           </Row>
