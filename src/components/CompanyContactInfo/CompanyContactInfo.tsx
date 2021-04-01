@@ -9,7 +9,7 @@ interface CompanyContactInfoProps {
 export const CompanyContactInfo: React.FC<CompanyContactInfoProps> = ({ website, contacts }: CompanyContactInfoProps) => {
   return (
     <>
-      <List.Item>
+      <List.Item style={{ padding: "0px 0px 5px 0px "}}>
         <List.Item.Meta
           title={<a href={website}>{website}</a>}
         />
