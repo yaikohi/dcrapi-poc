@@ -45,13 +45,13 @@ export const Company: FC<CompanyProps> = (props) => {
         </Row>
 
         <Row className="modal-row" gutter={[20, 20]} wrap={true}>
-          <Col xs={24} md={12} className="modal-column">
-            <Card title="Over dit bedrijf" className="card">
+          <Col xs={24} md={16} className="modal-column">
+            <Card title="Over dit bedrijf" className="card card-height">
               <CompanyDescr companyDescr={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."} />
             </Card>
           </Col>
-          <Col xs={24} md={12} className="modal-column">
-            <Card title="Contactgegevens" className="card">
+          <Col xs={24} md={8} className="modal-column">
+            <Card title="Contactgegevens" className="card card-height">
               <CompanyContactInfo website={props.company.website} contacts={props.company.contacts} />
             </Card>
           </Col>

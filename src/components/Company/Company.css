@@ -24,3 +24,7 @@
 .company-details {
     margin: 10px 0px 0px 0px;
 }
+.card-height{
+  min-height: 350px;
+  max-height: 400px;
+}
