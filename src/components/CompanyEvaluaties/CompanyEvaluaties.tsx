@@ -1,6 +1,6 @@
 import { Typography } from 'antd';
-const { Title } = Typography;
+const { Text } = Typography;
 
 export const CompanyEvaluaties: React.FC = () => {
-  return <Title level={3}>Evaluaties</Title>;
+  return <Text>Evaluaties zijn op dit moment nog niet beschikbaar.</Text>;
 }
