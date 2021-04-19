@@ -56,18 +56,13 @@ export const Company: FC<CompanyProps> = (props) => {
             </Card>
           </Col>
         </Row>
-        
-        <Row className="modal-row" gutter={[20, 20]} wrap={true}>
+
+        <Row className="modal-row">
           <Col xs={24} md={24} className="modal-column">
             <Card title="Evaluaties" className="card">
               <CompanyEvaluaties />
             </Card>
           </Col>
-          {/* <Col xs={24} md={12} className="modal-column">
-              <Card title="Contactgegevens" className="card">
-                <CompanyContactInfo website={props.company.website} contacts={props.company.contacts} />
-              </Card>
-            </Col> */}
         </Row>
       </Card>
     </Card>
