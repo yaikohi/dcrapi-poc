@@ -12,6 +12,8 @@ import { Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom';
 import { HomeOutlined } from '@ant-design/icons';
 
+// WIP: CompanyTag
+import { CompanyTag } from '../CompanyTag/CompanyTag';
 
 interface CompanyProps {
     company: CompanyType
@@ -35,6 +37,11 @@ export const Company: FC<CompanyProps> = (props) => {
         <Card className="main-card">
           <Row wrap={true} className="modal-row">
             <Col xs={24} md={7} className="modal-column">
+
+              {/* TODO: Add the CompanyTag */}
+              {/* CompanyTag here? */}
+              <CompanyTag />
+              
               <Row justify="center" align="middle" className="logo-row">
                 <CompanyLogo logoName={props.company.logo} />
               </Row>
