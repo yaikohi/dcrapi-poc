@@ -3,11 +3,15 @@ import { Typography } from 'antd';
 
 const { Text } = Typography;
 
-export const CompanyTag: React.FC = () => {
+interface CompanyTagProps {
+  text: String,
+}
+
+export const CompanyTag: React.FC<CompanyTagProps> = ({ text }: CompanyTagProps) => {
   return (
     <Tag>
       <Text>
-        IT
+        { text }
       </Text>
     </Tag>
   )
