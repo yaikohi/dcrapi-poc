@@ -1,8 +1,8 @@
 import { Row, Col, Typography, Statistic, Card } from 'antd';
+import ColumnGroup from 'antd/lib/table/ColumnGroup';
 import './CompanyEvaluaties.css';
 
-const { Text } = Typography;
-const { Meta } = Card;
+const { Title, Text } = Typography;
 
 export const CompanyEvaluaties: React.FC = () => {
   return (
@@ -27,10 +27,13 @@ export const CompanyEvaluaties: React.FC = () => {
         <Col span={6}>
           <Card
             hoverable
-            //style={{ width: 240 }}
-            cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+            className="center"
+            style={{ width: 300, backgroundColor: "#1890ff", height: "100%", textAlign: "center", color: "#fff" }}
+          //cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
           >
-            <Meta title="Europe Street beat" description="www.instagram.com" />
+            <Title level={1} style={{color: "#fff"}}>7.8</Title>
+            <Title level={3}  style={{color: "#fff"}}>AVERAGE SCORE</Title>
+            <Text  style={{color: "#fff"}}>AVERAGE SCORE</Text>
           </Card>
         </Col>
       </Row>
