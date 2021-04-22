@@ -1,41 +1,51 @@
-import { Row, Col, Typography, Statistic, Card } from 'antd';
+import { Row, Col, Typography, Statistic, Card, Divider, Rate } from 'antd';
+import { FrownOutlined, MehOutlined, SmileOutlined } from '@ant-design/icons';
 import ColumnGroup from 'antd/lib/table/ColumnGroup';
 import './CompanyEvaluaties.css';
 
 const { Title, Text } = Typography;
 
+const customIcons = {
+  1: <FrownOutlined />,
+  2: <FrownOutlined />,
+  3: <MehOutlined />,
+  4: <SmileOutlined />,
+  5: <SmileOutlined />,
+};
+
 export const CompanyEvaluaties: React.FC = () => {
   return (
     <>
       <Row gutter={12} >
-        <Col span={18}>
+        <Col md={18}>
           <Row gutter={8} className="evaluaties-scores-section">
-            <Col span={12} className="evaluation-item">
+            <Col xs={12} className="evaluation-item">
               <Statistic title="Organization of Cooperation" value={7.8} />
             </Col>
-            <Col span={12} className="evaluation-item">
+            <Col xs={12} className="evaluation-item">
               <Statistic title="Adequate knowledge to students" value={8.1} />
             </Col>
-            <Col span={12} className="evaluation-item">
+            <Col xs={12} className="evaluation-item">
               <Statistic title="Organization of Cooperation" value={7.8} />
             </Col>
-            <Col span={12} className="evaluation-item">
+            <Col xs={12} className="evaluation-item">
               <Statistic title="Quality of education" value={8.7} />
             </Col>
           </Row>
         </Col>
-        <Col span={6}>
+        <Col md={6}>
           <Card
             hoverable
-            className="center"
+            className="center average-score-item"
             style={{
-              width: 300, backgroundColor: "#1890ff", height: 300, textAlign: "center", color: "#fff"
+              backgroundColor: "#1890ff", color: "#fff"
             }}
-          //cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
           >
-            <Title level={1} style={{ color: "#fff" }}>7.8</Title>
+            <Text className="evaluaties-score-number">7.8</Text>
+            <Divider type="horizontal" style={{ backgroundColor: "#fff" }} />
             <Title level={3} style={{ color: "#fff" }}>AVERAGE SCORE</Title>
-            <Text style={{ color: "#fff" }}>AVERAGE SCORE</Text>
+            <Rate defaultValue={3} character={({ index }) => customIcons[index + 1]} />
+            {/* <Text style={{ color: "#fff" }}>AVERAGE SCORE</Text> */}
           </Card>
         </Col>
       </Row>

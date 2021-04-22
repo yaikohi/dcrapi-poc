@@ -11,9 +11,13 @@
   font-size: 38px;
 }
 .average-score-item{
-  width: 300;
+  width: 300px;
   background-color: #1890ff;
-  height: "100%";
-  text-align: "center";
+  height: 300px;
+  text-align: center;
+  color: #fff;
+}
+.evaluaties-score-number{
+  font-size: 55px;
   color: #fff;
 }
