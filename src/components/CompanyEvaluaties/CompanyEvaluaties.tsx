@@ -28,12 +28,14 @@ export const CompanyEvaluaties: React.FC = () => {
           <Card
             hoverable
             className="center"
-            style={{ width: 300, backgroundColor: "#1890ff", height: "100%", textAlign: "center", color: "#fff" }}
+            style={{
+              width: 300, backgroundColor: "#1890ff", height: 300, textAlign: "center", color: "#fff"
+            }}
           //cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
           >
-            <Title level={1} style={{color: "#fff"}}>7.8</Title>
-            <Title level={3}  style={{color: "#fff"}}>AVERAGE SCORE</Title>
-            <Text  style={{color: "#fff"}}>AVERAGE SCORE</Text>
+            <Title level={1} style={{ color: "#fff" }}>7.8</Title>
+            <Title level={3} style={{ color: "#fff" }}>AVERAGE SCORE</Title>
+            <Text style={{ color: "#fff" }}>AVERAGE SCORE</Text>
           </Card>
         </Col>
       </Row>

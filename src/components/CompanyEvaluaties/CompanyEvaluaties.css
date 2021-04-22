@@ -10,3 +10,10 @@
 .evaluation-item .ant-statistic-content{
   font-size: 38px;
 }
+.average-score-item{
+  width: 300;
+  background-color: #1890ff;
+  height: "100%";
+  text-align: "center";
+  color: #fff;
+}
