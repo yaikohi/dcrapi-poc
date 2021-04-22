@@ -42,7 +42,7 @@ export const CompanyEvaluaties: React.FC = () => {
             }}
           >
             <Text className="evaluaties-score-number">7.8</Text>
-            <Divider type="horizontal" style={{ backgroundColor: "#fff" }} />
+            <Divider type="horizontal" className="bg-white" />
             <Title level={3} style={{ color: "#fff" }}>AVERAGE SCORE</Title>
             <Rate defaultValue={3} character={({ index }) => customIcons[index + 1]} />
             {/* <Text style={{ color: "#fff" }}>AVERAGE SCORE</Text> */}
