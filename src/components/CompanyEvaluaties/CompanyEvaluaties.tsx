@@ -1,4 +1,4 @@
-import { Row, Col, Typography, Statistic, Card, Divider, Rate } from 'antd';
+import { Row, Col, Typography, Statistic, Card, Rate } from 'antd';
 import { FrownOutlined, MehOutlined, SmileOutlined } from '@ant-design/icons';
 import './CompanyEvaluaties.css';
 
@@ -19,16 +19,16 @@ export const CompanyEvaluaties: React.FC = () => {
         <Col md={18}>
           <Row gutter={8} className="evaluaties-scores-section">
             <Col xs={12} className="evaluation-item">
-              <Statistic title="Organization of Cooperation" value={7.8} />
+              <Statistic title="Organization of Cooperation" value={8.6} />
             </Col>
             <Col xs={12} className="evaluation-item">
               <Statistic title="Adequate knowledge to students" value={8.1} />
             </Col>
             <Col xs={12} className="evaluation-item">
-              <Statistic title="Organization of Cooperation" value={7.8} />
+              <Statistic title="Organization of Cooperation" value={7.9} />
             </Col>
             <Col xs={12} className="evaluation-item">
-              <Statistic title="Quality of education" value={8.7} />
+              <Statistic title="Quality of education" value={8.4} />
             </Col>
           </Row>
         </Col>
@@ -40,11 +40,11 @@ export const CompanyEvaluaties: React.FC = () => {
               backgroundColor: "#fff", color: "#000"
             }}
           >
-            <Text className="evaluaties-score-number">7.8</Text>
-            <Divider type="horizontal" className="bg-white" />
-            <Rate defaultValue={3} character={({ index }) => customIcons[index + 1]} />
+            <div className="average-score-number"><Text className="evaluaties-score-number">8.8</Text>
+            </div>
+            <Rate defaultValue={4} disabled allowHalf allowClear={false} character={({ index }) => customIcons[index + 1]} />
             <Title level={3} style={{ color: "#000", marginTop: "15px" }}>AVERAGE SCORE</Title>
-            <Text style={{ color: "#000" }}>Changing the future together</Text>
+            <Text style={{ color: "#000" }}>changing the future together</Text>
           </Card>
         </Col>
       </Row>
