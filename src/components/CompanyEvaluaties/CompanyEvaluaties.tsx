@@ -1,6 +1,5 @@
-import { Row, Col, Typography, Statistic, Card, Divider, Rate, Badge } from 'antd';
+import { Row, Col, Typography, Statistic, Card, Divider, Rate } from 'antd';
 import { FrownOutlined, MehOutlined, SmileOutlined } from '@ant-design/icons';
-import ColumnGroup from 'antd/lib/table/ColumnGroup';
 import './CompanyEvaluaties.css';
 
 const { Title, Text } = Typography;
@@ -34,21 +33,19 @@ export const CompanyEvaluaties: React.FC = () => {
           </Row>
         </Col>
         <Col md={6}>
-          <Badge.Ribbon style={{ backgroundColor: "#e6302b" }} text="Thanks for the cooperation">
-            <Card
-              hoverable
-              className="center average-score-item"
-              style={{
-                backgroundColor: "#1890ff", color: "#fff"
-              }}
-            >
-              <Text className="evaluaties-score-number">7.8</Text>
-              <Divider type="horizontal" className="bg-white" />
-              <Title level={3} style={{ color: "#fff" }}>AVERAGE SCORE</Title>
-              <Rate defaultValue={3} character={({ index }) => customIcons[index + 1]} />
-              {/* <Text style={{ color: "#fff" }}>AVERAGE SCORE</Text> */}
-            </Card>
-          </Badge.Ribbon>
+          <Card
+            hoverable
+            className="center average-score-item"
+            style={{
+              backgroundColor: "#fff", color: "#000"
+            }}
+          >
+            <Text className="evaluaties-score-number">7.8</Text>
+            <Divider type="horizontal" className="bg-white" />
+            <Rate defaultValue={3} character={({ index }) => customIcons[index + 1]} />
+            <Title level={3} style={{ color: "#000", marginTop: "15px" }}>AVERAGE SCORE</Title>
+            <Text style={{ color: "#000" }}>Changing the future together</Text>
+          </Card>
         </Col>
       </Row>
     </>
