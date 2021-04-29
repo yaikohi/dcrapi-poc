@@ -1,5 +1,5 @@
-import { Row, Col, Typography, Statistic, Card, Rate } from 'antd';
-import { FrownOutlined, MehOutlined, SmileOutlined } from '@ant-design/icons';
+import { Row, Col, Typography, Statistic, Card, Rate, Tooltip } from 'antd';
+import { FrownOutlined, MehOutlined, SmileOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import './CompanyEvaluaties.css';
 interface CompanyEvaluationProps {
   evaluations: any;
@@ -39,7 +39,12 @@ export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ evaluation
           let evaluationItemScore = parseInt(element.score); // parse score to int
           averageTotal = averageTotal + evaluationItemScore; // count all evaluation scores
 
-          evaList.push(<Col xs={12} className="evaluation-item" key={key}><Statistic style={{ textTransform: "capitalize" }} title={key} value={evaluationItemScore.toFixed(1)} /></Col>)
+          evaList.push(
+            <Col xs={12} className="evaluation-item" key={key}>
+              <Tooltip title={element.explanation} color={"#1890ff"} arrowPointAtCenter={true}>
+                <Statistic style={{ textTransform: "capitalize" }} title={key} value={evaluationItemScore.toFixed(1)} />
+              </Tooltip>
+            </Col>)
           evaluationsListCount++;
         }
       }
@@ -67,6 +72,7 @@ export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ evaluation
           >
             <div className="average-score-number"><Text className="evaluaties-score-number">{averageScore.toFixed(1)}</Text>
             </div>
+
             <Rate defaultValue={0} value={rateScoreFinal} className="average-score-smileys" disabled allowHalf allowClear={false} character={({ index }) => customIcons[index + 1]} />
             <Title level={4}>AVERAGE SCORE</Title>
             <Text className="bold">changing the future together</Text>
