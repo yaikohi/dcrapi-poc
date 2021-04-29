@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Row, Col, Typography, Statistic, Card, Rate } from 'antd';
 import { FrownOutlined, MehOutlined, SmileOutlined } from '@ant-design/icons';
 import './CompanyEvaluaties.css';
