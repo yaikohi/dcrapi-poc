@@ -26,7 +26,7 @@ export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ evaluation
       if (Object.prototype.hasOwnProperty.call(evaluations, key)) {
         const element = evaluations[key];
 
-        evaList.push(<Col xs={12} className="evaluation-item" key={key}><Statistic title={key} value={element.score} /></Col>)
+        evaList.push(<Col xs={12} className="evaluation-item" key={key}><Statistic style={{ textTransform: "capitalize" }} title={key} value={element.score} /></Col>)
 
       }
     }
@@ -39,19 +39,6 @@ export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ evaluation
         <Col md={18}>
           <Row gutter={8} className="evaluaties-scores-section">
             {showData()}
-            {/* <Col xs={12} className="evaluation-item">
-              <Statistic title="Organization of Cooperation" value={evaluations.organisation} />
-            </Col>
-            <Col xs={12} className="evaluation-item">
-              <Statistic title="Adequate knowledge to students" value={8.1} />
-            </Col>
-            <Col xs={12} className="evaluation-item">
-              <Statistic title="Organization of Cooperation" value={7.9} />
-            </Col>
-            <Col xs={12} className="evaluation-item">
-              <Statistic title="Quality of education" value={8.4} />
-            </Col> */}
-
           </Row>
         </Col>
         <Col md={6}>
