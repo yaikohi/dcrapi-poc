@@ -1,12 +1,9 @@
-import { useState } from 'react';
 import { Row, Col, Typography, Statistic, Card, Rate } from 'antd';
 import { FrownOutlined, MehOutlined, SmileOutlined } from '@ant-design/icons';
 import './CompanyEvaluaties.css';
-
 interface CompanyEvaluationProps {
   evaluations: any;
 }
-
 const { Title, Text } = Typography;
 
 const customIcons = {
@@ -19,18 +16,19 @@ const customIcons = {
 
 export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ evaluations }: CompanyEvaluationProps) => {
 
-  let averageScore = 0;
+  let averageScore = 0; // average score 
+  let rateScoreFinal = 0; // smileys score
 
   const setAverageScoreHandler = (averageTotal, evaluationsListCount) => {
     averageScore = averageTotal / evaluationsListCount;
-    //setAverageScore(aSFinal)
+    let rateScoreRaw = averageScore / 2;
+    rateScoreFinal = rateScoreRaw;
   }
 
   const showEvaluations = () => {
     let evaList = [];
     let averageTotal = 0.0;
     let evaluationsListCount = 0;
-    let averageScoreFinal = 0;
 
     if (evaluations !== null) {
 
@@ -46,7 +44,7 @@ export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ evaluation
         }
       }
 
-      // calculate average score
+      // function to calculate average score
       setAverageScoreHandler(averageTotal, evaluationsListCount);
 
       return evaList;
@@ -69,7 +67,7 @@ export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ evaluation
           >
             <div className="average-score-number"><Text className="evaluaties-score-number">{averageScore.toFixed(1)}</Text>
             </div>
-            <Rate defaultValue={4} className="average-score-smileys" disabled allowHalf allowClear={false} character={({ index }) => customIcons[index + 1]} />
+            <Rate defaultValue={0} value={rateScoreFinal} className="average-score-smileys" disabled allowHalf allowClear={false} character={({ index }) => customIcons[index + 1]} />
             <Title level={4}>AVERAGE SCORE</Title>
             <Text className="bold">changing the future together</Text>
           </Card>
