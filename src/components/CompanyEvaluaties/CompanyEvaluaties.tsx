@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Row, Col, Typography, Statistic, Card, Rate } from 'antd';
 import { FrownOutlined, MehOutlined, SmileOutlined } from '@ant-design/icons';
 import './CompanyEvaluaties.css';
@@ -18,18 +19,39 @@ const customIcons = {
 
 export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ evaluations }: CompanyEvaluationProps) => {
 
-  const showData = () => {
+  let averageScore = 0;
+
+  const setAverageScoreHandler = (averageTotal,evaluationsListCount) => {
+      averageScore = averageTotal / evaluationsListCount;
+      //setAverageScore(aSFinal)
+  }
+
+  const showEvaluations = () => {
     let evaList = [];
+    let averageTotal = 0.0;
+    let evaluationsListCount = 0;
+    let averageScoreFinal = 0;
 
-    for (const key in evaluations) {
-      if (Object.prototype.hasOwnProperty.call(evaluations, key)) {
-        const element = evaluations[key];
+    if (evaluations !== null) {
 
-        evaList.push(<Col xs={12} className="evaluation-item" key={key}><Statistic style={{ textTransform: "capitalize" }} title={key} value={element.score} /></Col>)
+      // loop through evaluations object
+      for (const key in evaluations) {
+        if (Object.prototype.hasOwnProperty.call(evaluations, key)) {
+          const element = evaluations[key];
+          let evaluationItem = parseInt(element.score); // parse score to int
+          averageTotal = averageTotal + evaluationItem; // count all evaluation scores
 
+          evaList.push(<Col xs={12} className="evaluation-item" key={key}><Statistic style={{ textTransform: "capitalize" }} title={key} value={element.score} /></Col>)
+          evaluationsListCount++;
+        }
       }
+
+      // calculate average score
+      setAverageScoreHandler(averageTotal,evaluationsListCount);
+
+      return evaList;
     }
-    return evaList;
+
   }
 
   return (
@@ -37,7 +59,7 @@ export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ evaluation
       <Row gutter={12} >
         <Col md={18}>
           <Row gutter={8} className="evaluaties-scores-section">
-            {showData()}
+            {showEvaluations()}
           </Row>
         </Col>
         <Col md={6}>
@@ -45,7 +67,7 @@ export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ evaluation
             hoverable
             className="center average-score-item"
           >
-            <div className="average-score-number"><Text className="evaluaties-score-number">8.8</Text>
+            <div className="average-score-number"><Text className="evaluaties-score-number">{averageScore}</Text>
             </div>
             <Rate defaultValue={4} className="average-score-smileys" disabled allowHalf allowClear={false} character={({ index }) => customIcons[index + 1]} />
             <Title level={4}>AVERAGE SCORE</Title>
