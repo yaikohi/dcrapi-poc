@@ -36,15 +36,15 @@ export const CompanyEvaluaties: React.FC = () => {
           <Card
             hoverable
             className="center average-score-item"
-            style={{
-              backgroundColor: "#fff", color: "#000"
-            }}
+            // style={{
+            //   backgroundColor: "#fff", color: "#000"
+            // }}
           >
             <div className="average-score-number"><Text className="evaluaties-score-number">8.8</Text>
             </div>
-            <Rate defaultValue={4} style={{ color: "#00a1e1" }} disabled allowHalf allowClear={false} character={({ index }) => customIcons[index + 1]} />
-            <Title level={3} style={{ color: "#000", marginTop: "15px" }}>AVERAGE SCORE</Title>
-            <Text style={{ color: "#000" }}>changing the future together</Text>
+            <Rate defaultValue={4} className="average-score-smileys" disabled allowHalf allowClear={false} character={({ index }) => customIcons[index + 1]} />
+            <Title level={4}>AVERAGE SCORE</Title>
+            <Text className="bold">changing the future together</Text>
           </Card>
         </Col>
       </Row>

@@ -11,9 +11,8 @@
   font-size: 38px;
 }
 .average-score-item{
-  background-color: #1890ff;
   text-align: center;
-  color: #fff;
+  color: #000;
 }
 .average-score-item .bg-white{
   background-color: #fff;
@@ -27,4 +26,9 @@
   padding: 20px;
   margin-bottom: 10px;
   border-radius: 3px;
+}
+.average-score-smileys{
+  color: #1890ff;
+  font-size: 25px;
+  margin-bottom: 10px;
 }
