@@ -6,12 +6,14 @@ import { CompanyDescr } from '../CompanyDescr/CompanyDescr';
 import { CompanyContactInfo } from '../CompanyContactInfo/CompanyContactInfo';
 import { CompanyDetails } from '../CompanyDetails/CompanyDetails';
 import './Company.css';
+import { CompanyTag } from "../CompanyTag/CompanyTag";
 
-import { FC } from 'react';
-import { Card, Row, Col } from 'antd';
-import { Breadcrumb } from 'antd';
-import { Link } from 'react-router-dom';
-import { HomeOutlined } from '@ant-design/icons';
+import { FC } from "react";
+import { Card, Row, Col } from "antd";
+import { Breadcrumb } from "antd";
+import { Link } from "react-router-dom";
+import { HomeOutlined } from "@ant-design/icons";
+
 
 const baseUrl: string = process.env.REACT_APP_API_URL;
 interface CompanyProps {
@@ -60,6 +62,9 @@ export const Company: FC<CompanyProps> = (props) => {
           </Col>
           <Col xs={24} md={17} className="company-details">
             <CompanyDetails companyName={props.company.name} companyTagline={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."} />
+            {props.company.sectors.map((sector) => (
+              <CompanyTag text={sector} />
+            ))}
           </Col>
         </Row>
 
