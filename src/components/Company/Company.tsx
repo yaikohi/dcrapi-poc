@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Company as CompanyType } from '../../interfaces/Company'
 import { CompanyLogo } from '../CompanyLogo/CompanyLogo';
 import { CompanyEvaluaties } from '../CompanyEvaluaties/CompanyEvaluaties';
@@ -12,12 +13,30 @@ import { Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom';
 import { HomeOutlined } from '@ant-design/icons';
 
-
+const baseUrl: string = process.env.REACT_APP_API_URL;
 interface CompanyProps {
   company: CompanyType
 }
 
 export const Company: FC<CompanyProps> = (props) => {
+
+  const [companyId] = useState(props.company.id);
+  const [companyEvaluations, setCompanyEvaluations] = useState([]);
+
+  useEffect(() => {
+    fetch(`${baseUrl}/reviews/${companyId}`)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          const evaluationItems = result.response[0];
+          setCompanyEvaluations(evaluationItems.review);
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
+  }, [])
+
   return (
     <Card>
       <Breadcrumb className="breadcrumb">
@@ -60,7 +79,7 @@ export const Company: FC<CompanyProps> = (props) => {
         <Row className="modal-row">
           <Col xs={24} md={24} className="modal-column">
             <Card title="Evaluaties" className="card">
-              <CompanyEvaluaties />
+              <CompanyEvaluaties evaluations={companyEvaluations} />
             </Card>
           </Col>
         </Row>
