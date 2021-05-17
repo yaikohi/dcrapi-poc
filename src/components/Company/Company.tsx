@@ -22,11 +22,10 @@ interface CompanyProps {
 
 export const Company: FC<CompanyProps> = (props) => {
 
-  const [companyId] = useState(props.company.id);
   const [companyEvaluations, setCompanyEvaluations] = useState([]);
 
   useEffect(() => {
-    fetch(`${baseUrl}/reviews/${companyId}`)
+    fetch(`${baseUrl}/reviews/` + props.company.id)
       .then(res => res.json())
       .then(
         (result) => {
