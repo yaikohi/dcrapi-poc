@@ -36,17 +36,32 @@ export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ evaluation
       for (const key in evaluations) {
         if (Object.prototype.hasOwnProperty.call(evaluations, key)) {
           const element = evaluations[key];
-          let evaluationItemScore = parseInt(element.score); // parse score to int
-          averageTotal = averageTotal + evaluationItemScore; // count all evaluation scores
+          let evaluationItemScore = element.score;
 
-          evaList.push(
-            <Col xs={12} className="evaluation-item" key={key}>
-              <Tooltip title={element.explanation} color={"#1890ff"} arrowPointAtCenter={true}>
-                <Statistic style={{ textTransform: "capitalize" }} title={key} value={evaluationItemScore.toFixed(1)} />
-              </Tooltip>
-            </Col>)
-          evaluationsListCount++;
+          if (evaluationItemScore == "") {
+            evaList.push(
+              <Col xs={12} className="evaluation-item-empty" key={key}>
+                <Tooltip title={element.explanation} color={"#1890ff"} arrowPointAtCenter={true}>
+                  <Statistic title={key} value={"Nog niet beschikbaar"} />
+                </Tooltip>
+              </Col>)
+            evaluationsListCount++;
+
+          } else {
+            let evaluationItemScoreParsed = parseInt(element.score); // parse score to int
+            averageTotal = averageTotal + evaluationItemScoreParsed; // count all evaluation scores
+
+            evaList.push(
+              <Col xs={12} className="evaluation-item" key={key}>
+                <Tooltip title={element.explanation} color={"#1890ff"} arrowPointAtCenter={true}>
+                  <Statistic title={key} value={evaluationItemScoreParsed.toFixed(1)} />
+                </Tooltip>
+              </Col>)
+            evaluationsListCount++;
+          }
         }
+
+
       }
 
       // function to calculate average score

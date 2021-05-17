@@ -31,6 +31,7 @@ export const Company: FC<CompanyProps> = (props) => {
         (result) => {
           const evaluationItems = result.response[0];
           setCompanyEvaluations(evaluationItems.review);
+          //console.log(evaluationItems)
         },
         (error) => {
           console.log(error);

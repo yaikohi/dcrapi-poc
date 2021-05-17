@@ -6,9 +6,20 @@
 }
 .evaluation-item .ant-statistic-title{
   font-size: 18px;
+  text-transform: capitalize;
 }
 .evaluation-item .ant-statistic-content{
   font-size: 38px;
+}
+.evaluation-item-empty{
+  padding: 30px 0;
+}
+.evaluation-item-empty .ant-statistic-title{
+  font-size: 18px;
+  text-transform: capitalize;
+}
+.evaluation-item-empty .ant-statistic-content{
+  font-size: 22px;
 }
 .average-score-item{
   text-align: center;
