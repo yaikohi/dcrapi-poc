@@ -30,21 +30,26 @@ export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ evaluation
     let evaList = [];
     let averageTotal = 0.0;
     let evaluationsListCount = 0;
-    console.log(evaluations);
+    let checkIfEmpty = evaluations.response;
 
-    if (evaluations !== null) {
+    // array exists and is not empty
+    if (Array.isArray(checkIfEmpty) && checkIfEmpty.length) {
+
+      let listLocation = evaluations.response[0].review;
 
       // loop through evaluations object
-      for (const key in evaluations) {
-        if (Object.prototype.hasOwnProperty.call(evaluations, key)) {
-          const element = evaluations[key];
+      for (const key in listLocation) {
+        if (Object.prototype.hasOwnProperty.call(listLocation, key)) {
+          const element = listLocation[key];
           let evaluationItemScore = element.score;
+
+          console.log(element);
 
           if (evaluationItemScore == "") {
             evaList.push(
               <Col xs={12} className="evaluation-item-empty" key={key}>
                 <Tooltip title={element.explanation} color={"#1890ff"} arrowPointAtCenter={true}>
-                  <Statistic title={key} value={"Nog niet beschikbaar"} />
+                  <Statistic title={key} value={"Geen evaluaties beschikbaar"} />
                 </Tooltip>
               </Col>)
             evaluationsListCount++;
@@ -64,14 +69,54 @@ export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ evaluation
         }
       }
 
+      console.log(evaList);
+
       // function to calculate average score
       setAverageScoreHandler(averageTotal, evaluationsListCount);
-
-    } else {
-      evaList.push(<Paragraph>Nog geen evaluaties beschikbaar</Paragraph>)
+      return evaList;
     }
 
-    return evaList;
+    // if (evaluations.length > 0) {
+
+    //   // loop through evaluations object
+    //   for (const key in evaluations.repsonse) {
+    //     if (Object.prototype.hasOwnProperty.call(evaluations, key)) {
+    //       const element = evaluations[key];
+    //       let evaluationItemScore = element.score;
+
+    //       if (evaluationItemScore == "") {
+    //         evaList.push(
+    //           <Col xs={12} className="evaluation-item-empty" key={key}>
+    //             <Tooltip title={element.explanation} color={"#1890ff"} arrowPointAtCenter={true}>
+    //               <Statistic title={key} value={"Geen evaluaties beschikbaar"} />
+    //             </Tooltip>
+    //           </Col>)
+    //         evaluationsListCount++;
+
+    //       } else {
+    //         let evaluationItemScoreParsed = parseInt(element.score); // parse score to int
+    //         averageTotal = averageTotal + evaluationItemScoreParsed; // count all evaluation scores
+
+    //         evaList.push(
+    //           <Col xs={12} className="evaluation-item" key={key}>
+    //             <Tooltip title={element.explanation} color={"#1890ff"} arrowPointAtCenter={true}>
+    //               <Statistic title={key} value={evaluationItemScoreParsed.toFixed(1)} />
+    //             </Tooltip>
+    //           </Col>)
+    //         evaluationsListCount++;
+    //       }
+    //     }
+    //   }
+
+    //   //console.log(evaluations.response.length);
+
+    //   // function to calculate average score
+    //   setAverageScoreHandler(averageTotal, evaluationsListCount);
+
+    // } else {
+    //   evaList.push(<Paragraph>Geen evaluaties beschikbaar</Paragraph>)
+    // }
+
   }
   return (
     <>
