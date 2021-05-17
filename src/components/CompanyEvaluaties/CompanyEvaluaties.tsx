@@ -75,7 +75,6 @@ export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ evaluation
 
             <Rate defaultValue={0} value={rateScoreFinal} className="average-score-smileys" disabled allowHalf allowClear={false} character={({ index }) => customIcons[index + 1]} />
             <Title level={4}>AVERAGE SCORE</Title>
-            <Text className="bold">changing the future together</Text>
           </Card>
         </Col>
       </Row>
