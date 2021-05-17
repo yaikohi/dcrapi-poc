@@ -1,6 +1,7 @@
 import { Row, Col, Typography, Statistic, Card, Rate, Tooltip } from 'antd';
 import { FrownOutlined, MehOutlined, SmileOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import './CompanyEvaluaties.css';
+const { Paragraph } = Typography;
 interface CompanyEvaluationProps {
   evaluations: any;
 }
@@ -29,6 +30,7 @@ export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ evaluation
     let evaList = [];
     let averageTotal = 0.0;
     let evaluationsListCount = 0;
+    console.log(evaluations);
 
     if (evaluations !== null) {
 
@@ -60,18 +62,17 @@ export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ evaluation
             evaluationsListCount++;
           }
         }
-
-
       }
 
       // function to calculate average score
       setAverageScoreHandler(averageTotal, evaluationsListCount);
 
-      return evaList;
+    } else {
+      evaList.push(<Paragraph>Nog geen evaluaties beschikbaar</Paragraph>)
     }
 
+    return evaList;
   }
-
   return (
     <>
       <Row gutter={12} >
@@ -95,4 +96,5 @@ export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ evaluation
       </Row>
     </>
   );
+
 }

@@ -29,9 +29,7 @@ export const Company: FC<CompanyProps> = (props) => {
       .then(res => res.json())
       .then(
         (result) => {
-          const evaluationItems = result.response[0];
-          setCompanyEvaluations(evaluationItems.review);
-          //console.log(evaluationItems)
+            setCompanyEvaluations(result);
         },
         (error) => {
           console.log(error);
