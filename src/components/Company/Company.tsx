@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Company as CompanyType } from '../../interfaces/Company'
 import { CompanyLogo } from '../CompanyLogo/CompanyLogo';
 import { CompanyEvaluaties } from '../CompanyEvaluaties/CompanyEvaluaties';
@@ -13,29 +12,11 @@ import { Card, Row, Col } from "antd";
 import { Breadcrumb } from "antd";
 import { Link } from "react-router-dom";
 import { HomeOutlined } from "@ant-design/icons";
-
-
-const baseUrl: string = process.env.REACT_APP_API_URL;
 interface CompanyProps {
   company: CompanyType
 }
 
 export const Company: FC<CompanyProps> = (props) => {
-
-  const [companyEvaluations, setCompanyEvaluations] = useState([]);
-
-  useEffect(() => {
-    fetch(`${baseUrl}/reviews/` + props.company.id)
-      .then(res => res.json())
-      .then(
-        (result) => {
-            setCompanyEvaluations(result);
-        },
-        (error) => {
-          console.log(error);
-        }
-      )
-  }, [])
 
   return (
     <Card>
@@ -82,7 +63,7 @@ export const Company: FC<CompanyProps> = (props) => {
         <Row className="modal-row">
           <Col xs={24} md={24} className="modal-column">
             <Card title="Evaluaties" className="card">
-              <CompanyEvaluaties evaluations={companyEvaluations} />
+              <CompanyEvaluaties  company={props.company.id}/>
             </Card>
           </Col>
         </Row>
