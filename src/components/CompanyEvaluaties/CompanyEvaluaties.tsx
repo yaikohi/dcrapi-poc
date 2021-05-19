@@ -21,14 +21,22 @@ const customIcons = {
 export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ company }: CompanyEvaluationProps) => {
 
   const [evaluationsAvailable, setEvaluationsAvailable] = useState(true);
+  const [evaluationList, setEvaluationList] = useState([]);
 
   useEffect(() => {
     fetch(`${baseUrl}/reviews/` + company)
       .then(res => res.json())
       .then(
         (data) => {
-          //setCompanyEvaluations(data);
-          console.log(data.response);
+        const dataRaw = data.response;
+
+          if (Array.isArray(dataRaw) && dataRaw.length) {
+            setEvaluationList(dataRaw);
+
+          }else{
+            console.error("geen evaluaties beschikbaar.")
+          }
+          //console.log(evaluationList);
         },
         (error) => {
           console.log(error);
@@ -115,6 +123,7 @@ export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ company }:
   // const EvaluationsList = evaluations.response[0];
   // const EvaluationsReviews = EvaluationsList.review;
   // console.log(EvaluationsReviews);
+  console.log(evaluationList);
 
   return (
     <Row gutter={12} >
