@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRequest } from '../src/helpers/axios';
 import './App.css';
 import { CompanyGrid } from './components/CompanyGrid/CompanyGrid';
@@ -14,7 +14,7 @@ const baseUrl: string = process.env.REACT_APP_API_URL;
 function App() {
     const [searchInput, setSearchInput] = useState("");
     const [companiesFetchError, setCompaniesFetchError] = useState(null);
-    const [companiesFetched, setCompaniesFetched] = useState(true);
+    let companiesFetched = false;
 
     const data = useRequest(`${baseUrl}/companies`);
     if (!data) {
@@ -22,6 +22,7 @@ function App() {
     }
 
     const companyRoutes = data.response.map((company) => {
+        companiesFetched = true;
         return (
             <Route exact path={`/company/${company.id}`}>
                 <Company company={company} />
