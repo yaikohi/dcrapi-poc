@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
 import { useRequest } from '../../helpers/axios';
 import { Row, Col, Typography, Statistic, Card, Rate, Tooltip } from 'antd';
-import { FrownOutlined, MehOutlined, SmileOutlined, InfoCircleOutlined } from '@ant-design/icons';
+import { FrownOutlined, MehOutlined, SmileOutlined } from '@ant-design/icons';
 import './CompanyEvaluaties.css';
 const { Paragraph } = Typography;
 
@@ -21,110 +20,90 @@ const customIcons = {
 
 export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ company }: CompanyEvaluationProps) => {
 
-    const [evaluationAverageScore, setEvaluationAverageScore] = useState(null);
-    const [evaluationList, setEvaluationList] = useState([]);
+    let averageScore = 0;
 
-    let averageScore = 0; // average score 
-    let rateScoreFinal = 0; // smileys score
-    let avgScore = 0;
-
-    const evaluations = useRequest('http://dashboard-pio.herokuapp.com/reviews/' + company);
+    const evaluations = useRequest(`${baseUrl}/reviews/${company}`);
     if (!evaluations) {
         return null;
     }
-    const evaluationsRaw = evaluations.response[0];
-
-    if (evaluationsRaw.averageScore !== "") {
-        avgScore = evaluationsRaw.averageScore;
-        console.log(avgScore)
-    }
-
-    const setAverageScoreHandler = (averageTotal, evaluationsListCount) => {
-        averageScore = averageTotal / evaluationsListCount;
-        let rateScoreRaw = averageScore / 2;
-        rateScoreFinal = rateScoreRaw;
-    }
+    const evaluationsRaw = evaluations.response;
 
     const AverageScoreCard = () => {
-        return (<Card
-            hoverable
-            className="center average-score-item"
-        >
-            <div className="average-score-number">
-                <Text className="evaluaties-score-number">{avgScore.toFixed(1)}</Text>
-            </div>
-            <Rate defaultValue={0} value={rateScoreFinal} className="average-score-smileys" disabled allowHalf allowClear={false} character={({ index }) => customIcons[index + 1]} />
-            <Title level={4}>AVERAGE SCORE</Title>
-        </Card>)
+
+        if (!evaluations.length) {
+            const avgScore = evaluations.response[0];
+
+            if (avgScore.averageScore > 0) {
+                averageScore = avgScore.averageScore;
+                const rateScoreFinal = averageScore / 2; // smileys score
+
+                return (<Card
+                    hoverable
+                    className="center average-score-item"
+                >
+                    <div className="average-score-number">
+                        <Text className="evaluaties-score-number">{averageScore}</Text>
+                    </div>
+                    <Rate defaultValue={0} value={rateScoreFinal} className="average-score-smileys" disabled allowHalf allowClear={false} character={({ index }) => customIcons[index + 1]} />
+                    <Title level={4}>AVERAGE SCORE</Title>
+                </Card>)
+            } else {
+                return
+            }
+        }
+
     }
 
+    const showEvaluations = () => {
+        let evaList = [];
+        let evaluationsListCount = 0;
+        let checkIfEmpty = evaluationsRaw;
 
-    // const showEvaluations = () => {
-    //   let evaList = [];
-    //   let averageTotal = 0.0;
-    //   let evaluationsListCount = 0;
-    //   let checkIfEmpty = evaluations.response;
+        // array exists and is not empty
+        if (Array.isArray(checkIfEmpty) && checkIfEmpty.length) {
 
-    //   // array exists and is not empty
-    //   if (Array.isArray(checkIfEmpty) && checkIfEmpty.length) {
+            let listLocation = evaluationsRaw[0].review;
+            // loop through evaluations object
+            for (const key in listLocation) {
 
-    //     let listLocation = checkIfEmpty[0].review;
-    //     // loop through evaluations object
-    //     for (const key in listLocation) {
-    //       if (Object.prototype.hasOwnProperty.call(listLocation, key)) {
-    //         const element = listLocation[key];
-    //         let evaluationItemScore = element.score;
+                if (Object.prototype.hasOwnProperty.call(listLocation, key)) {
+                    const element = listLocation[key];
+                    let evaluationItemScore = element.score;
 
-    //         if (evaluationItemScore !== "") {
-    //           let evaluationItemScoreParsed = parseInt(element.score); // parse score to int
-    //           averageTotal = averageTotal + evaluationItemScoreParsed; // count all evaluation scores
+                    if (evaluationItemScore !== "") {
+                        let evaluationItemScoreParsed = parseInt(element.score); // parse score to int
 
-    //           evaList.push(
-    //             <Col xs={12} className="evaluation-item" key={key}>
-    //               <Tooltip title={element.explanation} color={"#1890ff"} arrowPointAtCenter={true}>
-    //                 <Statistic title={key} value={evaluationItemScoreParsed.toFixed(1)} />
-    //               </Tooltip>
-    //             </Col>)
+                        evaList.push(
+                            <Col xs={12} className="evaluation-item" key={key}>
+                                <Tooltip title={element.explanation} color={"#1890ff"} arrowPointAtCenter={true}>
+                                    <Statistic title={key} value={evaluationItemScoreParsed} />
+                                </Tooltip>
+                            </Col>)
 
-    //         } else {
-    //           evaList.push(
-    //             <Col xs={12} className="evaluation-item-empty" key={key}>
-    //               <Tooltip title={element.explanation} color={"#1890ff"} arrowPointAtCenter={true}>
-    //                 <Statistic title={key} value={"Geen evaluaties beschikbaar"} />
-    //               </Tooltip>
-    //             </Col>)
-    //         }
-    //       }
-    //       evaluationsListCount++;
-    //     }
+                    } else {
+                        evaList.push(
+                            <Col xs={12} className="evaluation-item-empty" key={key}>
+                                <Tooltip title={element.explanation} color={"#1890ff"} arrowPointAtCenter={true}>
+                                    <Statistic title={key} value={"Geen evaluaties beschikbaar"} />
+                                </Tooltip>
+                            </Col>)
+                    }
+                }
+                evaluationsListCount++;
+            }
 
-    //     // function to calculate average score
-    //     setAverageScoreHandler(averageTotal, evaluationsListCount);
-    //   } else {
-    //     evaList.push(<Paragraph>Geen evaluaties beschikbaar</Paragraph>)
-    //   }
+        } else {
+            evaList.push(<Paragraph>Geen evaluaties beschikbaar</Paragraph>)
+        }
 
-    //   return evaList;
-
-    // }
-
-    // const EvaluationsList = evaluations.response[0];
-    // const EvaluationsReviews = EvaluationsList.review;
-    // console.log(EvaluationsReviews);
+        return evaList;
+    }
 
     return (
         <Row gutter={12} >
             <Col md={18}>
                 <Row gutter={8} className="evaluaties-scores-section">
-                    {/* {EvaluationsList.map((item, index) => (
-            <p>{item.quality}!</p>
-          ))} */}
-                    <Col xs={12} className="evaluation-item" key={1}>
-                        <Tooltip title={"Test tooltip"} color={"#1890ff"} arrowPointAtCenter={true}>
-                            <Statistic title={"Title"} value={9} />
-                        </Tooltip>
-                    </Col>
-
+                    {showEvaluations()}
                 </Row>
             </Col>
             <Col md={6}>
