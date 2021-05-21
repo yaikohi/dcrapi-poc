@@ -24,7 +24,7 @@
 .company-details {
     margin: 10px 0px 0px 0px;
 }
-.card-height{
+.card__contacts{
   min-height: 350px;
   max-height: 400px;
 }
