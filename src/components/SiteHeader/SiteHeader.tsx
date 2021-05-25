@@ -15,7 +15,7 @@ interface SiteHeaderProps {
 
 export const SiteHeader: FC<SiteHeaderProps> = (props) => {
   let history = useHistory();
-  console.log(history)
+  //console.log(history)
   const handleOnSearch = () => history.push('/');
 
   const onSearchBarChange = (e) => {

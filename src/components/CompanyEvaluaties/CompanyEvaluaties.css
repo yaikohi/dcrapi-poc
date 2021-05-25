@@ -1,0 +1,45 @@
+.evaluaties-scores-section {
+  text-align: center;
+}
+.evaluation-item{
+  padding: 30px 0;
+}
+.evaluation-item .ant-statistic-title{
+  font-size: 18px;
+  text-transform: capitalize;
+}
+.evaluation-item .ant-statistic-content{
+  font-size: 38px;
+}
+.evaluation-item-empty{
+  padding: 30px 0;
+}
+.evaluation-item-empty .ant-statistic-title{
+  font-size: 18px;
+  text-transform: capitalize;
+}
+.evaluation-item-empty .ant-statistic-content{
+  font-size: 22px;
+}
+.average-score-item{
+  text-align: center;
+  color: #000;
+}
+.average-score-item .bg-white{
+  background-color: #fff;
+}
+.evaluaties-score-number{
+  font-size: 55px;
+  color: #000;
+}
+.average-score-number{
+  background-color:#E5E5E5;
+  padding: 20px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+}
+.average-score-smileys{
+  color: #1890ff;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
