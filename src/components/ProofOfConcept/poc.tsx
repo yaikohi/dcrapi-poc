@@ -23,10 +23,10 @@ export const Poc = ({ company, ...props }: Props) => {
         const response = await axios.get<DcrApiResp>(
           `http://dcr-api000.herokuapp.com/api/piodash-colors/${company.id}`
         );
-        const data = response.data;
+        const data = response.data
         setColors(data);
-        console.log(data)
-        setLoaded(true);
+        console.log(colors)
+        setLoaded(true)
       } catch (error) {
         if (error) {
           console.log(error.message);
@@ -34,7 +34,8 @@ export const Poc = ({ company, ...props }: Props) => {
         }
       }
     };
-  }, []);
+    fetchColors();
+  }, colors);
 
   return (
     <>
