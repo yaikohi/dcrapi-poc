@@ -1,12 +1,10 @@
 import { Company as CompanyType } from "../../interfaces/Company";
 import { CompanyDescr } from "../CompanyDescr/CompanyDescr";
 import { CompanyContactInfo } from "../CompanyContactInfo/CompanyContactInfo";
-import "./Company.css";
 import axios from "axios";
 
 import { useEffect, useState } from "react";
 import { Card, Row, Col } from "antd";
-
 
 type DcrApiResp = [String, String, String];
 
@@ -17,24 +15,25 @@ interface Props {
 export const Poc = ({ company, ...props }: Props) => {
   const [colors, setColors] = useState([]);
   const [loaded, setLoaded] = useState(false);
-  const c1 = colors[0];
-  const c2 = colors[1];
-  const c3 = colors[2];
+
 
   useEffect(() => {
     const fetchColors = async () => {
-      const response = await axios.get<DcrApiResp>(
-        `http://dcr-api000.herokuapp.com/api/${company.id}`
-      );
-      const data = response.data;
-      setColors(data);
+      try {
+        const response = await axios.get<DcrApiResp>(
+          `http://dcr-api000.herokuapp.com/api/piodash-colors/${company.id}`
+        );
+        const data = response.data;
+        setColors(data);
+        console.log(data)
+        setLoaded(true);
+      } catch (error) {
+        if (error) {
+          console.log(error.message);
+          return error.message;
+        }
+      }
     };
-    fetchColors();
-    setLoaded(true);
-    // setTimeout(() => {
-    //   fetchColors();
-    //   setLoaded(true);
-    // }, 100);
   }, []);
 
   return (
