@@ -6,6 +6,8 @@ import { SiteHeader } from './components/SiteHeader/SiteHeader';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Company } from './components/Company/Company';
 import { Layout } from 'antd';
+
+import { Poc } from '../src/components/ProofOfConcept/poc';
 const { Content } = Layout;
 
 const gapSize = 16;
@@ -17,6 +19,7 @@ function App() {
     let companiesFetched = false;
 
     const data = useRequest(`${baseUrl}/companies`);
+
     if (!data) {
         return null;
     }
@@ -25,7 +28,7 @@ function App() {
         companiesFetched = true;
         return (
             <Route exact path={`/company/${company.id}`}>
-                <Company company={company} />
+                <Poc company={company} />
             </Route>
         )
     })
