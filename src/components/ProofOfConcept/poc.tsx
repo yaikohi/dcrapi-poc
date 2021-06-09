@@ -35,13 +35,17 @@ interface PocProps {
 export const Poc = ({company}: PocProps) => {
   // CSS backgroundColor variables
   const companyColorsBase = colorDb[company.name][1];
-  const companyColorsHue: String = "ff";
+  const companyColorsHue: String = "35";
 
   const companyColors = companyColorsBase + companyColorsHue;
 
   // Style variables
   const aboutStyle: CSS.Properties = {
     backgroundColor: `#${companyColors}`,
+    borderRadius: "6px",
+    padding: "40px",
+    color: "ffffff",
+    
   };
 
   const emptyStyle: CSS.Properties = {
