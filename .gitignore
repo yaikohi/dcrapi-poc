@@ -7,7 +7,8 @@
 
 # testing
 /coverage
-
+why.md
+/db
 # production
 .env
 /build
