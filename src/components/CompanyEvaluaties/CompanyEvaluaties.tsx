@@ -5,6 +5,7 @@ import './CompanyEvaluaties.css';
 const { Paragraph } = Typography;
 
 const baseUrl: string = process.env.REACT_APP_API_URL;
+
 interface CompanyEvaluationProps {
     company: any;
 }
@@ -56,7 +57,6 @@ export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ company }:
 
     const showEvaluations = () => {
         let evaList = [];
-        let evaluationsListCount = 0;
         let checkIfEmpty = evaluationsRaw;
 
         // array exists and is not empty
@@ -89,7 +89,6 @@ export const CompanyEvaluaties: React.FC<CompanyEvaluationProps> = ({ company }:
                             </Col>)
                     }
                 }
-                evaluationsListCount++;
             }
 
         } else {
