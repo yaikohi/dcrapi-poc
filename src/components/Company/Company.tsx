@@ -34,14 +34,14 @@ const colorDb = {
   "Capgemini Nederland BV": ["12abdb"],
   "Alstom Transport BV": ["174385"],
   "AFAS Software": ["1564a4", "c80e42"],
-  "Sogeti Nederland B.V.": ["0071ae", "ff4019"],
+  "Sogeti Nederland B.V.": ["0071ae"],
   Rabobank: ["ec781e"],
   Hydrologic: ["4982cf"],
-  Proact: ["f5002e", "f4012e"],
-  Axians: ["0072bc", "a60771"],
-  Yellax: ["fedf00", "070501", "936b17"],
-  "CIM Solutions": ["6f9c42", "c5da99"],
-  "Finaps B.V.": ["191970", "ffaa00"],
+  Proact: ["f5002e"],
+  Axians: ["0072bc"],
+  Yellax: ["fedf00"],
+  "CIM Solutions": ["6f9c42"],
+  "Finaps B.V.": ["191970"],
 };
 
 export const Company: FC<CompanyProps> = ({ company }: CompanyProps) => {
