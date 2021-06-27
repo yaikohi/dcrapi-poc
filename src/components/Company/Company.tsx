@@ -19,7 +19,6 @@ interface CompanyProps {
 }
 
 // TODO possibly refactor html element classnames
-// TODO refactor/select color values
 const colorDb = {
   Fynch: ["10998c"],
   Centric: ["5ca62f"],
